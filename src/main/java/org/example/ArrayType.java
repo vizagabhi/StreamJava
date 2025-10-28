@@ -1,5 +1,10 @@
 package org.example;
 
+import java.util.*;
+import java.util.function.Function;
+import java.util.stream.Collectors;
+import java.util.stream.IntStream;
+
 public class ArrayType
 {
     public static void main( String[] args )
@@ -13,6 +18,7 @@ public class ArrayType
 //                                            .collect(Collectors.toList());
 //
 //        System.out.println(filteredList);
+        System.out.println("Let's Solve Array type streams questions.");
 //=======================================================================================================================
         //Q.1) Sum of elements in arraylist:
 
@@ -67,5 +73,76 @@ public class ArrayType
 //        System.out.println(collect);
 
 //===========================================================================================================================================
+        ///Q.5)Find all numbers starting with 1;
+//        List<Integer> nums = Arrays.asList(10,21,13,41,15,2,1,100,23);
+//
+//                        nums.stream()
+//                                .filter(x-> String.valueOf(x).startsWith("1"))
+//                                .forEach(System.out::println);
+        //==================================================================================================================================
+        //Q.6) Check list contain Prime Number.
+
+//        List<Integer> numbers = Arrays.asList(4,6,8,11,15,16);
+//
+//        boolean isPrime = numbers.stream().anyMatch(x->isPrime(x));
+//        System.out.println("Does this list contain prime? "+isPrime);
+
+        //==============================================================================================================
+        //Q.7)nth smallest element in an array.
+//        int arr[]= {12,3,5,4,7,8,13};
+//        int n = 3;
+        //Smallest
+//        Arrays.stream(arr).sorted().skip(n-1).findFirst().ifPresent(System.out::println);
+
+        //Highest
+//        Arrays.stream(arr).boxed().sorted(Comparator.reverseOrder()).skip(n-1).findFirst().ifPresent(System.out::println);
+        //=================================================================================================================
+
+        //Q.8)In an array, return true if array contains duplicate element.
+
+//        int nums[] = {1,2,3,3,4,5,6};
+//
+//        Set<Integer> numSet = new HashSet<>();
+//        boolean response = Arrays.stream(nums).anyMatch(elm -> !numSet.add(elm));
+//        System.out.println(response);
+
+        //OR
+
+//        boolean result = Arrays.stream(nums).distinct().count() != nums.length;
+//        System.out.println(result);
+        //=================================================================================================================
+
+        //Q.9) Find the intersection / common element in 2 streams.
+//        List<Integer> list1 = Arrays.asList(1, 2, 3, 4, 5);
+//        List<Integer> list2 = Arrays.asList(4, 5, 6, 7, 8);
+
+//        list1.stream().filter(elm->list2.contains(elm)).forEach(System.out::println);
+        //==============================================================================================================
+        //Q.10) Find sum of all digit of number.
+//        int num = 12345;
+//        int sum = String.valueOf(num).chars().map(elm -> Character.getNumericValue(elm)).sum();
+//        System.out.println(sum);
+        //===============================================================================================================
+
+        //Q.11)Find out most repeated element in an Array.
+
+        int num[]= {3,3,2,2,1,1,1,2,3};
+        Arrays.stream(num)
+                .boxed()
+                .collect(Collectors.groupingBy(Function.identity(),Collectors.counting()))
+                .entrySet()
+                .stream()
+                .max(Comparator.comparingLong(Map.Entry::getValue))
+                .map(Map.Entry::getKey)
+                .ifPresent((elm->System.out.println("Most repeated no is : " +elm)));
+
+
+    }
+
+    static  boolean isPrime(int num){
+        if(num<=1)
+            return false;
+
+        return IntStream.rangeClosed(2,(int)Math.sqrt(num)).noneMatch(i->num%i==0);
     }
 }
