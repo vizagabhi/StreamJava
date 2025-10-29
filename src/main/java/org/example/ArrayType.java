@@ -4,6 +4,7 @@ import java.util.*;
 import java.util.function.Function;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
+import java.util.stream.Stream;
 
 public class ArrayType
 {
@@ -126,23 +127,80 @@ public class ArrayType
 
         //Q.11)Find out most repeated element in an Array.
 
-        int num[]= {3,3,2,2,1,1,1,2,3};
-        Arrays.stream(num)
-                .boxed()
-                .collect(Collectors.groupingBy(Function.identity(),Collectors.counting()))
-                .entrySet()
-                .stream()
-                .max(Comparator.comparingLong(Map.Entry::getValue))
-                .map(Map.Entry::getKey)
-                .ifPresent((elm->System.out.println("Most repeated no is : " +elm)));
+//        int num[]= {3,3,2,2,1,1,1,2,3};
+//        Arrays.stream(num)
+//                .boxed()
+//                .collect(Collectors.groupingBy(Function.identity(),Collectors.counting()))
+//                .entrySet()
+//                .stream()
+//                .max(Comparator.comparingLong(Map.Entry::getValue))
+//                .map(Map.Entry::getKey)
+//                .ifPresent((elm->System.out.println("Most repeated no is : " +elm)));
+        //==============================================================================================================
+        //Q.12)Print distinct numbers which ends with 1 in ascending order.
+
+//        List<Integer> numbers = Arrays.asList(150,145,212,413,234,21,51,111,519,54,71,54,11,91);
+
+//        numbers.stream()
+//                .filter(num -> num%10==1)
+//                .distinct()
+//                .sorted()
+//                .forEach(System.out::println);
+
+        //Variation : have 1 anywhere.
+//        numbers.stream()
+//                .filter(num->String.valueOf(num).contains("1"))
+//                .distinct()
+//                .sorted()
+//                .forEach(System.out::println);
+        //==============================================================================================================
+
+        //Q.13) Generate Fibonacci Sequence.
+
+//        int n = 10;
+//        Stream.iterate(new int[]{0,1},num -> new int[]{num[1],num[0]+num[1]})
+//                .limit(n)
+//                .map(num -> num[0])
+//                .forEach(System.out::println);
+        //==============================================================================================================
+
+        //Q.14) Find the index of the closest element to a given value.
+
+//        List<Integer> list = Arrays.asList(-10, 2, 3, 8, 15, 1);
+//        int target = 5;
+//
+//        int closestIndex = IntStream.range(0, list.size())
+//                .boxed()
+//                .min(Comparator.comparingInt(ind -> Math.abs(list.get(ind) - target)))
+//                .orElse(-1);
+//
+//        System.out.println("INdex of closest element is "+ closestIndex + " Closest value is " + list.get(closestIndex));
+
+        //Variation: Find Even number closest to target.
+
+//        list.stream()
+//                .filter(num->num%2==0)
+//                .min(Comparator.comparingInt((num->Math.abs(num-target))))
+//                .ifPresent(System.out::println);
+        //==============================================================================================================
+
+        //Q.15) Find the closest number smaller than given number.
+
+//        List<Double> list = Arrays.asList(3.4, 5.8, 1.2, 7.9, 9.6, 2.7, 6.2, 4.7, 0.6, 4.1);
+//        double target = 5.0;
+//
+//        list.stream()
+//                .filter(num ->num<target)
+//                .max(Comparator.naturalOrder())
+//                .ifPresent(System.out::println);
 
 
     }
 
-    static  boolean isPrime(int num){
-        if(num<=1)
-            return false;
-
-        return IntStream.rangeClosed(2,(int)Math.sqrt(num)).noneMatch(i->num%i==0);
-    }
+//    static  boolean isPrime(int num){
+//        if(num<=1)
+//            return false;
+//
+//        return IntStream.rangeClosed(2,(int)Math.sqrt(num)).noneMatch(i->num%i==0);
+//    }
 }
