@@ -1,9 +1,8 @@
-package org.example;
+package org.example.main;
 
-import java.util.*;
+import java.util.Map;
 import java.util.function.Function;
 import java.util.stream.Collectors;
-import java.util.stream.IntStream;
 
 public class StringType {
     public static void main(String[] args) {
@@ -61,7 +60,7 @@ public class StringType {
 
         //===============================================================================================================
 
-        //Q.6)Count occurence of word from Arralist.
+        //Q.6)Count occurence of word from Arraylist.
 
 //        List<String> list = Arrays.asList("apple", "ball", "one", "ball", "row","one","one");
 //

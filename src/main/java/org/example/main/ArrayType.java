@@ -1,10 +1,9 @@
-package org.example;
+package org.example.main;
 
-import java.util.*;
-import java.util.function.Function;
-import java.util.stream.Collectors;
-import java.util.stream.IntStream;
-import java.util.stream.Stream;
+import java.util.Arrays;
+import java.util.Collections;
+import java.util.Comparator;
+import java.util.List;
 
 public class ArrayType
 {
@@ -123,6 +122,11 @@ public class ArrayType
 //        int num = 12345;
 //        int sum = String.valueOf(num).chars().map(elm -> Character.getNumericValue(elm)).sum();
 //        System.out.println(sum);
+         ////////////////////////OR/////////////////////////////////////////////////
+//        int sum = String.valueOf(num)
+//                .chars()
+//                .map(c -> c - '0')
+//                .sum();
         //===============================================================================================================
 
         //Q.11)Find out most repeated element in an Array.
@@ -136,6 +140,19 @@ public class ArrayType
 //                .max(Comparator.comparingLong(Map.Entry::getValue))
 //                .map(Map.Entry::getKey)
 //                .ifPresent((elm->System.out.println("Most repeated no is : " +elm)));
+
+        /////////////////////OR//////////////////////////////////////////
+
+//        Integer[] arr = {1, 2, 2, 3, 1, 2, 4};
+//
+//        List<Integer> list = Arrays.asList(arr);
+//
+//        Integer mostRepeated = list.stream()
+//                .distinct()
+//                .max(Comparator.comparingInt(e -> Collections.frequency(list, e)))
+//                .get();
+//
+//        System.out.println("Most repeated element: " + mostRepeated);
         //==============================================================================================================
         //Q.12)Print distinct numbers which ends with 1 in ascending order.
 
