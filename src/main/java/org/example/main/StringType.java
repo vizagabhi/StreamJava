@@ -1,5 +1,7 @@
 package org.example.main;
 
+import java.util.Arrays;
+import java.util.Comparator;
 import java.util.Map;
 import java.util.function.Function;
 import java.util.stream.Collectors;
@@ -13,8 +15,6 @@ public class StringType {
 //
 //        String firstLongestLengthWord = Arrays.stream(sentence.split(" "))
 //                .max(Comparator.comparingInt(String::length))
-//                .stream()
-//                .findFirst()
 //                .get();
 //        System.out.println(firstLongestLengthWord);
 
@@ -22,12 +22,13 @@ public class StringType {
         //Q.2) Mininmum Frquency Character.
 
 //        String input = "banana applee";
-//        input.replaceAll(" ","").chars()
-//                .mapToObj(ch->(char)ch)
-//                .collect(Collectors.groupingBy(Function.identity(),Collectors.counting()))
-//                .entrySet()
-//                .stream()
-//                .min(Map.Entry.comparingByValue())
+//        input.replaceAll(" ","")    // "banana applee" --> "bananaapplee"
+//                .chars() //IntStream ==> [98, 97, 110, 97, 110, 97, 97, 112, 112, 108, 101, 101]
+//                .mapToObj(ch->(char)ch) //Converts each int (ASCII) into a Character object. Now it’s a Stream<Character>:[b, a, n, a, n, a, a, p, p, l, e, e]
+//                .collect(Collectors.groupingBy(Function.identity(),Collectors.counting()))//Map<Character,Long>==> {b=1,a=5,n=2,p=2,l=1,e=2}
+//                .entrySet()//Converts the Map into a Set of key-value pairs: [(b=1),(a=5),(n=2),(p=2),(l=1),(e=2)]
+//                .stream()//Stream of entries → (b=1), (a=5), (n=2), (p=2), (l=1), (e=2)
+//                .min(Map.Entry.comparingByValue())//compares entries by their value (i.e., the count). Result: Optional[(b=1)]
 //                .ifPresent(ch-> System.out.println("Character wid min freq is: "+ch));
 
         //===============================================================================================================
@@ -46,11 +47,31 @@ public class StringType {
 
 //        String sentence = "Krishna is the Supreme Lord of the Universe";
 //
-//        String reversedSentence = Arrays.stream(sentence.split(" "))
-//                                        .map(word -> new StringBuilder(word).reverse().toString())
-//                                        .collect(Collectors.joining(" "));
+//        String reversedSentence = Arrays.stream(sentence.split(" "))//["Krishna", "is", "the", "Supreme", "Lord", "of", "the", "Universe"]
+//                .map(word -> new StringBuilder(word).reverse().toString())//"anhsirK" → "si" → "eht" → "emerpuS" → "droL" → "fo" → "eht" → "esrevinU"
+//                .collect(Collectors.joining(" "));
 //
 //        System.out.println(reversedSentence);
+
+        //Full Visualization of above code.
+//        "Krishna is the Supreme Lord of the Universe"
+//        ↓
+//        split(" ")
+//        ↓
+//["Krishna", "is", "the", "Supreme", "Lord", "of", "the", "Universe"]
+//        ↓
+//        Arrays.stream(...)
+//        ↓
+//        Stream<String> → "Krishna", "is", "the", "Supreme", "Lord", "of", "the", "Universe"
+//        ↓
+//.map(word -> new StringBuilder(word).reverse().toString())
+//        ↓
+//        Stream<String> → "anhsirK", "si", "eht", "emerpuS", "droL", "fo", "eht", "esrevinU"
+//        ↓
+//.collect(Collectors.joining(" "))  joins all elements of the stream into a single string,inserting a space between each word.
+//        ↓
+//        "anhsirK si eht emerpuS droL fo eht esrevinU"
+
 
         //===============================================================================================================
         //Q.5) Find the Longest String in a List.
@@ -72,12 +93,29 @@ public class StringType {
         //Q.7) Count of each character in a string.
 //        String salute = "Hare Krishna Devotees";
 //
-//        salute.toLowerCase()
-//                .replaceAll("\\s", "") // remove spaces
+//        salute.toLowerCase() // "hare krishna devotees"
+//                .replaceAll("\\s", "") // remove spaces ==> "harekrishnadevotees"
 //                .chars()
 //                .mapToObj(c -> (char) c)
 //                .collect(Collectors.groupingBy(Function.identity(), Collectors.counting()))
 //                .forEach((character,count)->System.out.println(character+":"+count));
+
+        // Mental Flow:-
+
+//        "Hare Krishna Devotees"
+//                  ↓
+//        toLowerCase() → "hare krishna devotees"
+//                   ↓
+//        replaceAll("\\s","") → "harekrishnadevotees"
+//                     ↓
+//        chars() → [104, 97, 114, 101, 107, ...]
+//                   ↓
+//        mapToObj(c -> (char)c) → ['h','a','r','e','k','r','i','s','h','n','a','d','e','v','o','t','e','e','s']
+//                   ↓
+//        groupingBy(Function.identity(), counting()) → {h=2, a=2, r=2, e=5, ...}
+//                   ↓
+//        forEach(...) → print key:value
+
 
         //===============================================================================================================
 
@@ -95,12 +133,12 @@ public class StringType {
 
 //        String input = "swiss";
 //
-//        input.chars()
-//                .mapToObj(ch ->(char)ch)
-//                .collect(Collectors.groupingBy(ch->ch, LinkedHashMap::new,Collectors.counting()))
-//                .entrySet().stream()
-//                .filter(entry->entry.getValue()==1)
-//                .map(Map.Entry::getKey)
+//        input.chars() // [115, 119, 105, 115, 115]
+//                .mapToObj(ch ->(char)ch) // Stream<Character>::->['s', 'w', 'i', 's', 's']
+//                .collect(Collectors.groupingBy(ch->ch, LinkedHashMap::new,Collectors.counting())) // {s=3, w=1, i=1}
+//                .entrySet().stream() // ["s"=3, "w"=1, "i"=1]
+//                .filter(entry->entry.getValue()==1) // ["w"=1, "i"=1]
+//                .map(Map.Entry::getKey) // ['w', 'i']
 //                .findFirst().ifPresent(System.out::println);
 
         //===============================================================================================================
@@ -164,5 +202,8 @@ public class StringType {
 //                .collect(Collectors.groupingBy(Function.identity(), Collectors.counting()));
 //
 //        return freq1.equals(freq2);
+
 //    }
+
+
 }
