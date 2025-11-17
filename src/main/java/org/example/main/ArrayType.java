@@ -1,9 +1,7 @@
 package org.example.main;
 
-import java.util.Arrays;
-import java.util.Collections;
-import java.util.Comparator;
-import java.util.List;
+import java.util.*;
+import java.util.stream.Collectors;
 
 public class ArrayType
 {
@@ -210,6 +208,18 @@ public class ArrayType
 //                .filter(num ->num<target)
 //                .max(Comparator.naturalOrder())
 //                .ifPresent(System.out::println);
+        //===============================================================================================================
+        //Q.16)Implement a meethod to partition a list into 2 groups based on a predicate.
+        List<Integer> numbers = Arrays.asList(1,2,3,4,5,6,7,8,9);
+
+        Map<Boolean, List<Integer>> partioned = numbers.stream()
+                .collect(Collectors.partitioningBy(n -> n % 2 == 0));
+
+        List<Integer> evens = partioned.get(true);
+        List<Integer> odds = partioned.get(false);
+
+        System.out.println("Evens: "+evens);
+        System.out.println("Odds: "+odds);
 
 
     }

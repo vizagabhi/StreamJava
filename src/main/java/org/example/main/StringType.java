@@ -1,8 +1,6 @@
 package org.example.main;
 
-import java.util.Arrays;
-import java.util.Comparator;
-import java.util.Map;
+import java.util.*;
 import java.util.function.Function;
 import java.util.stream.Collectors;
 
@@ -41,7 +39,29 @@ public class StringType {
 //        boolean result = isAnagram(s1, s2);
 //        System.out.println(result ? "Anagram" : "Not Anagram");
 
-        //===============================================================================================================
+       // static boolean isAnagram(String str1, String str2){
+//
+//        // Clean up strings
+//        str1 = str1.replaceAll("\\s", "").toLowerCase();
+//        str2 = str2.replaceAll("\\s", "").toLowerCase();
+//
+//        if (str1.length() != str2.length()) return false;
+//
+//        // Build frequency map for each string
+//        Map<Character, Long> freq1 = str1.chars()
+//                .mapToObj(c -> (char) c)
+//                .collect(Collectors.groupingBy(Function.identity(), Collectors.counting()));
+//
+//        Map<Character, Long> freq2 = str2.chars()
+//                .mapToObj(c -> (char) c)
+//                .collect(Collectors.groupingBy(Function.identity(), Collectors.counting()));
+//
+//        return freq1.equals(freq2);
+
+//    }
+
+
+            //===============================================================================================================
 
         //Q.4) Reverse each word of a String.
 
@@ -152,6 +172,13 @@ public class StringType {
 //        Arrays.stream(sentence.split(" "))
 //                .filter(words -> countVowels(words)==k)
 //                .forEach(System.out::println);
+
+        //    private static long countVowels(String words) {
+//        return words.chars()
+//                .mapToObj(ch->(char)ch)
+//                .filter(ch->"aeiouAEIOU".indexOf(ch)!=-1)
+//                .count();
+//    }
         //===============================================================================================================
 
         //Q.11) String is Palindrome or not?
@@ -175,35 +202,69 @@ public class StringType {
 
 //        new HashSet<>(list).forEach(System.out::println);
 
+        //Q.13) Group Anagrams.
+//        List<String> arr = Arrays.asList("cat", "god", "act", "dog", "tac", "abb", "aac");
+//        //O/p:- [[act, cat, tac], [god, dog], [abb], [aac]]
+//        List<List<String>> result =
+//                arr.stream()
+//                        .collect(Collectors.groupingBy(
+//                                str -> {
+//                                    char[] ch = str.toCharArray();
+//                                    Arrays.sort(ch);
+//                                    return new String(ch);
+//                                },
+//                                LinkedHashMap::new,   // <-- maintains input order!
+//                                Collectors.toList()
+//                        ))
+//                        .values()
+//                        .stream()
+//                        .map(list -> list.stream().sorted().collect(Collectors.toList()))
+//                        .collect(Collectors.toList());
+//
+//        System.out.println(result);
+//
+//        //INPUT
+//        //["cat","god","act","dog","tac","abb","aac"]
+//        //
+//        //STEP 1: key = sorted(word)
+//        //"cat" → "act"
+//        //"god" → "dgo"
+//        //"act" → "act"
+//        //"dog" → "dgo"
+//        //"tac" → "act"
+//        //"abb" → "abb"
+//        //"aac" → "aac"
+//        //
+//        //STEP 2: group into LinkedHashMap
+//        //{
+//        // "act": ["cat","act","tac"],
+//        // "dgo": ["god","dog"],
+//        // "abb": ["abb"],
+//        // "aac": ["aac"]
+//        //}
+//        //
+//        //STEP 3: return values() preserving order
+//        //.values()
+//        //[
+//        // ["cat","act","tac"],
+//        // ["god","dog"],
+//        // ["abb"],
+//        // ["aac"]
+//        //]
+//        //
+//        //STEP 4: sort inside each group
+//        // .map(list -> list.stream().sorted().collect(Collectors.toList()))
+//
+//        //[
+//        // ["act","cat","tac"],
+//        // ["dog","god"],
+//        // ["abb"],
+//        // ["aac"]
+//        //]
+
     }
 
-//    private static long countVowels(String words) {
-//        return words.chars()
-//                .mapToObj(ch->(char)ch)
-//                .filter(ch->"aeiouAEIOU".indexOf(ch)!=-1)
-//                .count();
-//    }
 
-//    static boolean isAnagram(String str1, String str2){
-//
-//        // Clean up strings
-//        str1 = str1.replaceAll("\\s", "").toLowerCase();
-//        str2 = str2.replaceAll("\\s", "").toLowerCase();
-//
-//        if (str1.length() != str2.length()) return false;
-//
-//        // Build frequency map for each string
-//        Map<Character, Long> freq1 = str1.chars()
-//                .mapToObj(c -> (char) c)
-//                .collect(Collectors.groupingBy(Function.identity(), Collectors.counting()));
-//
-//        Map<Character, Long> freq2 = str2.chars()
-//                .mapToObj(c -> (char) c)
-//                .collect(Collectors.groupingBy(Function.identity(), Collectors.counting()));
-//
-//        return freq1.equals(freq2);
-
-//    }
 
 
 }
