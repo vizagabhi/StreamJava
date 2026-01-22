@@ -1,7 +1,9 @@
 package org.example.main;
 
-import java.util.*;
-import java.util.function.Function;
+import java.util.Arrays;
+import java.util.Comparator;
+import java.util.List;
+import java.util.Map;
 import java.util.stream.Collectors;
 
 public class StringType {
@@ -39,7 +41,7 @@ public class StringType {
 //        boolean result = isAnagram(s1, s2);
 //        System.out.println(result ? "Anagram" : "Not Anagram");
 
-       // static boolean isAnagram(String str1, String str2){
+        // static boolean isAnagram(String str1, String str2){
 //
 //        // Clean up strings
 //        str1 = str1.replaceAll("\\s", "").toLowerCase();
@@ -61,7 +63,7 @@ public class StringType {
 //    }
 
 
-            //===============================================================================================================
+        //===============================================================================================================
 
         //Q.4) Reverse each word of a String.
 
@@ -141,11 +143,13 @@ public class StringType {
 
         //Q.8) Word wid 'n'th highest length.
 
-//        List<String> words = Arrays.asList("apple", "banana", "kiwi", "cherry", "mango");
-//        words.stream()
-//                .sorted(Comparator.comparingInt(String::length).reversed())
-//                .skip(3)//n=2 means finding 3rd highest
-//                .findFirst().ifPresent(System.out::println);
+        List<String> words = Arrays.asList("apple", "banana", "kiwi", "cherry", "mango");
+        Map<String, Integer> collect = words.stream().collect(Collectors.toMap(w -> w, String::length));
+        System.out.println(collect);
+        words.stream()
+                .sorted(Comparator.comparingInt(String::length).reversed())
+                .skip(2)//n=2 means finding 3rd highest
+                .findFirst().ifPresent(System.out::println);
 
         //===============================================================================================================
 
@@ -201,7 +205,7 @@ public class StringType {
         //OR
 
 //        new HashSet<>(list).forEach(System.out::println);
-
+        //==============================================================================================================
         //Q.13) Group Anagrams.
 //        List<String> arr = Arrays.asList("cat", "god", "act", "dog", "tac", "abb", "aac");
 //        //O/p:- [[act, cat, tac], [god, dog], [abb], [aac]]
@@ -218,7 +222,7 @@ public class StringType {
 //                        ))
 //                        .values()
 //                        .stream()
-//                        .map(list -> list.stream().sorted().collect(Collectors.toList()))
+//                        .map(list -> list.stream().sorted().collect(Collectors.toList())) //Sorting inside each group.
 //                        .collect(Collectors.toList());
 //
 //        System.out.println(result);
@@ -263,8 +267,6 @@ public class StringType {
 //        //]
 
     }
-
-
 
 
 }
