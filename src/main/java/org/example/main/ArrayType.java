@@ -234,7 +234,39 @@ public class ArrayType {
 //        System.out.println("Evens: " + evens);
 //        System.out.println("Odds: " + odds);
 
+        //==============================================================================================================
+        //Q.17) Given a N x N matrix M. Write a program to find count of all the distinct elements common to all rows of the matrix.
+        // Print count of such elements.
 
+//        Input:
+//        N = 5
+//        M = {{12, 1, 14, 3, 16},
+//                {14, 2, 1, 3, 35},
+//                {14, 1, 14, 3, 11},
+//                {14, 5, 3, 2, 1},
+//                {1, 18, 3, 21, 14}}
+//        Output:
+//        3
+//        Explaination: 14, 3 and 1 are common in all the rows.
+
+//        static int distinct(int M[][], int N) {
+//
+//            Set<Integer> commonElements = Arrays.stream(M[0])
+//                                                  .boxed()
+//                                                  .collect(Collectors.toSet());
+//
+//            for(int i=1; i<N; i++){
+//                Set<Integer> currentRowSet = Arrays.stream(M[i])
+//                                                      .boxed()
+//                                                      .collect(Collectors.toSet());
+//
+//                commonElements.retainAll(currentRowSet);
+//
+//                if(commonElements.isEmpty()) return 0;
+//            }
+//
+//            return commonElements.size();
+//        }
     }
 
 
