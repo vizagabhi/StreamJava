@@ -1,6 +1,6 @@
 package org.example.dpp;
 
-import java.util.*;
+import java.util.LinkedHashMap;
 import java.util.stream.Collectors;
 
 public class DailyPractice {
@@ -29,9 +29,30 @@ public class DailyPractice {
 //        Set<Integer> hs = new HashSet<>();
 //        list.stream().filter(x->!hs.add(x)).collect(Collectors.toSet()).forEach(System.out::println);
 
-        //
+        // Remove Duplicate
 
+//        List<Integer> numbers = Arrays.asList(1, 2, 2, 3, 4, 4, 5, 6, 6);
+//        HashSet<Integer> set = new HashSet<>();
+//        numbers.stream().filter(set::add).toList().forEach((x) -> System.out.print(x + " "));
 
+        //Freq of each character
+//        String str = "interview";
+//        Map<Character, Long> collect = str.codePoints().mapToObj(i -> (char) i)
+//                .collect(Collectors.groupingBy(Function.identity(), LinkedHashMap::new, Collectors.counting()));
+//        collect.forEach((k, v) -> {
+//            System.out.println(k + "=" + v);
+//        });
 
+        // First Non Repeating char
+        String str = "aabbcddeff";
+
+        str.codePoints().mapToObj(ch -> (char) ch)
+                .collect(Collectors.groupingBy(ch -> ch, LinkedHashMap::new, Collectors.counting()))
+                .entrySet()
+                .stream()
+                .filter(entry -> entry.getValue() == 1)
+                .map(entry -> entry.getKey())
+                .findFirst()
+                .ifPresent(System.out::println);
     }
 }
